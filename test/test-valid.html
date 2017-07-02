@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>验证切换页面</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .component {
+            width: 50%;
+            height: 50px;
+            margin-bottom: 20px;
+            background-color: #eeeeee;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<!--用于验证 fullpage.js 切换页面，以及内容组织结构可用，组件能够进行动画-->
+<div id="h5">
+    <div class="page section" id="page1">
+        <div class="component logo">logo</div>
+        <div class="component slogan">slogan</div>
+    </div>
+    <div class="page section" id="page2">
+        <div class="component desc">desc</div>
+    </div>
+    <div class="page section" id="page3">
+        <div class="component bar">bar</div>
+    </div>
+</div>
+<script type="text/javascript" src="../js/lib/jquery.js"></script>
+<script type="text/javascript" src="../js/lib/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../js/lib/jquery.fullPage.js"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $('#h5').fullpage({
+            'sectionsColor': ['#254875', '#00FF00', '#254587', '#695684'],
+            onLeave: function (index, nextIndex, direction) {
+                //建立了一种耦合的方式，这样就可以给每个页面单独写事件
+                $('#h5').find('.page').eq(index - 1).trigger('onLeave');
+//                debugger
+            },
+            afterLoad: function (anchorLink, index) {
+                $('#h5').find('.page').eq(index - 1).trigger('onLoad');
+//                debugger
+            }
+        })
+
+        //执行page1的onLeave事件时，会触发当前页面下所有的onLeave事件
+        //onLeave事件会冒泡，传递到page1页面，page1监听到onLeave事件，又回继续执行
+        // 两个方法，使用triggerHandler代替trigger；或者return false;
+
+        $('.page').on('onLeave', function () {
+            console.log($(this).attr('id'), '==>>', 'onLeave');
+            $(this).find('.component').trigger('onLeave');
+        })
+
+        $('.page').on('onLoad', function () {
+            console.log($(this).attr('id'), '==>>', 'onLoad');
+            $(this).find('.component').trigger('onLoad');
+
+        })
+
+        $('.component').on('onLeave', function () {
+            $(this).fadeOut();
+            return false;
+        })
+
+        $('.component').on('onLoad', function () {
+            $(this).fadeIn();
+            return false;
+        })
+
+    });
+
+</script>
+</body>
+</html>
