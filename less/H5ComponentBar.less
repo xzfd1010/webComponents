@@ -1,0 +1,65 @@
+.h5_component_bar {
+  .line {
+    margin-bottom: 15px;
+    height: 15px;
+    line-height: 15px;
+    font-size: 12px;
+  }
+
+  .name {
+    width: 60px;
+    float: left;
+    color: #000;
+    text-align: center;
+    //position: absolute;
+    //left:-60px;
+  }
+
+  .rate {
+    height: 15px;
+    margin-left: 5px;
+    float: left;
+    position: relative;
+    .bg {
+      background-color: #99c0ff;
+      width: 0%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-radius: 3px;
+    }
+  }
+
+  .per{
+    //position: absolute;
+    //right:-20px;
+    width: 20px;
+    color:#99c0ff;
+    margin-left:5px;
+    float: left;
+    opacity:0;
+  }
+}
+
+@delay:.5s;
+// 动画效果
+// bg的生长动画
+.h5_component_bar_load .rate .bg {
+  width: 100%;
+  transition:all 1s @delay;
+}
+
+.h5_component_bar_leave .rate .bg{
+  width:0;
+}
+
+// per的载入动画
+.h5_component_bar_load .per{
+  transition:all 1s @delay + .4s;
+  opacity:1;
+}
+
+.h5_component_bar_leave .per{
+  opacity:0;
+}

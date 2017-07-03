@@ -38,44 +38,56 @@
         /*}*/
     </style>
     <link rel="stylesheet" href="../css/H5ComponentBase.css">
+
+    <!--引入柱资源-->
+    <link rel="stylesheet" href="../css/H5ComponentBar.css">
     <script src="../js/lib/jquery.js"></script>
     <script src="../js/H5ComponentBase.js"></script>
+
+    <!--引入柱图资源-->
+    <script src="../js/H5ComponentBar.js"></script>
 </head>
 <body>
-<!--用于开发基本的图文组件-->
+<!--散点图组件-->
 <div class="iphone">
 
 </div>
 
 <script>
     var cfg = {
-        type: 'base',
+        type: 'bar',
 //        text: '文本内容',
-        width: 514,
-        height: 306,
-        bg: '../img/p1_people.png',
+        width: 530,
+        height: 600,
+        data: [
+            ['Javascript', .4, '#ff7676'],
+            // 这里的100%偏移量是按照A项的大小设置的
+            ['HTML/CSS', .2],
+            ['CSS3', .1],
+            ['HTML5', .2],
+            ['jQuery', .35],
+            ['Bootstrap', .05],
+            ['AngularJs', .09]
+        ],
         css: {
             //统一设置css样式
-            bottom: 0,
+            top: 100,
             opacity: 0
         },
-        // 配置入场和出场动画
         animateIn: {
-            bottom: 80,
+            top: 200,
             opacity: 1
-
         },
         animateOut: {
-            bottom: 0,
-            opacity: 0
+            opacity: 0,
+            top: 100
         },
         center: true // 用于设置是否水平居中
     };
 
-    var h5 = new H5ComponentBase('myName', cfg);
+    var h5 = new H5ComponentBar('myBarComponent', cfg);
     $('.iphone').append(h5);
 
-    // 点击模拟leave事件
     var leave = true;
     $('body').click(function () {
         leave = !leave;

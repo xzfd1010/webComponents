@@ -38,9 +38,12 @@
         /*}*/
     </style>
     <link rel="stylesheet" href="../css/H5ComponentBase.css">
+
+    <!--引入散点图资源-->
     <link rel="stylesheet" href="../css/H5ComponentPoint.css">
     <script src="../js/lib/jquery.js"></script>
     <script src="../js/H5ComponentBase.js"></script>
+
     <!--引入散点图资源-->
     <script src="../js/H5ComponentPoint.js"></script>
 </head>
@@ -57,9 +60,10 @@
         width: 300,
         height: 300,
         data: [
-            'A项', .4, 'green',
-            'B项', .2, 'yellow', 0, '-120%',
-            'C项', .2, 'yellow', 0, '120%'
+            ['A项', .4, 'green'],
+            // 这里的100%偏移量是按照A项的大小设置的
+            ['B项', .2, 'yellow', 0, '-60%'],
+            ['C项', .1, 'red', 0, '120%']
         ],
         css: {
             //统一设置css样式
@@ -68,7 +72,7 @@
         },
         // 配置入场和出场动画
         animateIn: {
-            bottom: 80,
+            bottom: '40%',
             opacity: 1
 
         },
@@ -79,7 +83,7 @@
         center: true // 用于设置是否水平居中
     };
 
-    var h5 = new H5ComponentBase('myName', cfg);
+    var h5 = new H5ComponentPoint('myName', cfg);
     $('.iphone').append(h5);
 
     var leave = true;
