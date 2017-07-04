@@ -1,0 +1,36 @@
+/* 折线图样式 */
+.h5_component_polyline {
+  canvas {
+    // 用canvas做动画有很多层，比如背景层等，会用到z-index
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    //background-color: #eee;
+  }
+
+  .text {
+    position: absolute;
+    font-size: 12px;
+    text-align: center;
+    bottom: -20px;
+    height: 20px;
+    line-height: 20px;
+    transform: scale(.8);
+    transition: all 1s 1.5s;
+    opacity: 0;
+  }
+}
+
+.h5_component_polyline_load {
+  .text {
+    opacity: 1;
+  }
+}
+
+.h5_component_polyline_leave {
+  //.text {
+    opacity: 0;
+  //}
+}

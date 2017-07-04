@@ -31,7 +31,6 @@ var H5ComponentBar = function (name, cfg) {
         // 操作bar，就只需要从0-100%，不需要关注rate的宽度
         rate.html('<div class="bg"' + bgStyle + '></div>');
 
-
         rate.css('width', width);
 
         name.text(item[0]);
