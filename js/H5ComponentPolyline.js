@@ -167,7 +167,7 @@ var H5ComponentPolyline = function (name, cfg) {
                 draw(s);
             }, i * 10)
         }
-    })
+    });
 
 
 

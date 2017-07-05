@@ -44,14 +44,14 @@
   opacity: 0;
 }
 .h5_component_bar_v_load .rate .bg {
-  -webkit-transition: all 1s .5s;
+  transition: all 1s .5s;
   height: 100%;
 }
 .h5_component_bar_v_leave .rate .bg {
   height: 0;
 }
 .h5_component_bar_v_load .per {
-  -webkit-transition: all 1s 1.5s;
+  transition: all 1s 1.5s;
   opacity: 1;
 }
 .h5_component_bar_v_leave .per {

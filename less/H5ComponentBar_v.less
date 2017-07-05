@@ -1,5 +1,6 @@
 /* 垂直柱状组件样式 */
 .h5_component_bar_v {
+  // line从左向右排列
   .line {
     float: left;
     height: 100%;
@@ -7,6 +8,7 @@
     position: relative;
   }
 
+  // 项目名称移动到line下面
   .name {
     width: 100%;
     height: 20px;
@@ -17,6 +19,7 @@
     text-align: center;
   }
 
+  // rate在组件中居中
   .rate {
     height: 100%;
     width: 15px;
@@ -33,8 +36,10 @@
       bottom: 0;
       border-radius: 3px;
     }
+
   }
 
+  // 相对rate定位
   .per {
     width: 100%;
     position: absolute;
@@ -47,10 +52,11 @@
     color: #99c0ff;
     opacity: 0;
   }
+
 }
 
 .h5_component_bar_v_load .rate .bg {
-  -webkit-transition: all 1s .5s;
+  transition: all 1s .5s;
   height: 100%;
 }
 
@@ -59,7 +65,7 @@
 }
 
 .h5_component_bar_v_load .per {
-  -webkit-transition: all 1s 1.5s;
+  transition: all 1s 1.5s;
   opacity: 1;
 }
 
