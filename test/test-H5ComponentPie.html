@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>基本图文组件</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-size: 12px;
+        }
+
+        .iphone {
+            width: 340px;
+            height: 540px;
+            background-color: #fff;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin: -270px 0 0 -170px;
+        }
+    </style>
+    <link rel="stylesheet" href="../css/H5ComponentBase.css">
+
+    <script src="../js/lib/jquery.js"></script>
+    <script src="../js/H5ComponentBase.js"></script>
+
+    <!--引入开发测试饼图组件-->
+    <link rel="stylesheet" href="../css/H5ComponentPie.css">
+    <script src="../js/H5ComponentPie.js"></script>
+</head>
+<body>
+<!--饼图组件-->
+<div class="iphone">
+
+</div>
+
+<script>
+    var cfg = {
+        type: 'pie',
+        width: 400,
+        height: 400,
+        data: [
+            ['Js', .4, '#ff7676'],
+            ['CSS3', .2],
+            ['HTML', .05],
+            ['PHP', .2],
+            ['jQuery', .15]
+        ],
+        css: {
+            top: 100,
+            opacity: 1
+        },
+//        animateIn: {
+//            top: 200,
+//            opacity: 1
+//
+//        },
+//        animateOut: {
+//            top: 100,
+//            opacity: 0
+//        },
+        center: true // 用于设置是否水平居中
+    };
+
+    var h5 = new H5ComponentPie('myName', cfg);
+    $('.iphone').append(h5);
+
+    var leave = true;
+    $('body').click(function () {
+        leave = !leave;
+        $('.h5_component').trigger(leave ? 'onLeave' : 'onLoad');
+    })
+</script>
+</body>
+</html>
