@@ -4,23 +4,130 @@
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
     <meta name="renderer" content="webkit">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>Title</title>
     <!--载入所有的静态资源-->
     <script src="js/lib/jquery.js"></script>
     <script src="js/lib/jquery-ui.min.js"></script>
     <script src="js/lib/jquery.fullPage.js"></script>
 
-    <!--加载H5相关资源-->
+    <!--加载H5组件相关资源-->
     <script type="text/javascript">
         var res = ['Base', 'Bar', 'Bar_v', 'Point', 'Polyline', 'Radar', 'Pie', 'Ring'];
         var html = [];
         for (s in res) {
             html.push('<script src="js/H5Component' + res[s] + '.js"><\/script>');
-            html.push('<link rel="css/H5Component' + res[s] + '.css">');
+            html.push('<link rel="stylesheet" href="css/H5Component' + res[s] + '.css">');
         }
         document.write(html.join(' '));
     </script>
+
+    <!--H5对象：进行内容管理-->
+    <script src="js/H5.js"></script>
+    <link rel="stylesheet" href="css/H5.css">
+
+    <!--页面逻辑的样式-->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .h5_page_face {
+            background-image: url(img/face_bg.png);
+        }
+
+        .h5_component_name_slogan {
+            animation: rock 2s infinite 2s;
+        }
+
+        @keyframes rock {
+            0% {
+                transform: rotate(0deg);
+            }
+            5% {
+                transform: rotate(3deg);
+            }
+            10% {
+                transform: rotate(-4deg);
+            }
+            15% {
+                transform: rotate(3deg);
+            }
+            20% {
+                transform: rotate(-2deg);
+            }
+            25% {
+                transform: rotate(1deg);
+            }
+            30% {
+                transform: rotate(0deg);
+            }
+            70% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(0deg)
+            }
+
+        }
+    </style>
+
+    <!--主要逻辑-->
+    <script>
+        $(function () {
+            var h5 = new H5();
+
+            // 先考虑调用方式，再考虑编码方式，自顶向下
+            // 调用方式：链式调用
+            h5
+                .addPage('face')
+                .addComponent('topic', {
+                    center: true,
+                    width: 395,
+                    height: 130,
+                    bg: 'img/face_logo.png',
+                    css: {opacity: 0},
+                    animateIn: {top: 100, opacity: 1},
+                    animateOut: {top: 0, opacity: 0}
+
+                })
+                .addComponent('slogan', {
+                    center: true,
+                    width: 395,
+                    height: 110,
+                    bg: 'img/face_slogan.png',
+                    css: {opacity: 0, top: 180},
+                    animateIn: {left: '50%', opacity: 1},
+                    animateOut: {left: '0%', opacity: 0},
+                    delay: 500
+                })
+                .addComponent('face_img_left', {
+                    width: 370,
+                    height: 493,
+                    bg: 'img/face_img_left.png',
+                    css: {opacity: 0, left: -50, bottom: -50},
+                    animateIn: {left: 0, bottom: 0, opacity: 1},
+                    animateOut: {left: -50, bottom: -50, opacity: 0},
+                    delay: 1000
+                })
+                .addComponent('face_img_right', {
+                    width: 276,
+                    height: 449,
+                    bg: 'img/face_img_right.png',
+                    css: {opacity: 0, right: -50, bottom: -50},
+                    animateIn: {right: 0, bottom: 0, opacity: 1},
+                    animateOut: {right: -50, bottom: -50, opacity: 0},
+                    delay: 1000
+                })
+                .loader();
+
+        })
+    </script>
 </head>
 <body>
+
+
 </body>
 </html>

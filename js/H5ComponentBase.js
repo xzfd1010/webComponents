@@ -5,8 +5,8 @@ var H5ComponentBase = function (name, cfg) {
     var cfg = cfg || {};
     var id = ('h5_c_' + Math.random()).replace('.', '_');
     // 代表组件类型className,以及自定义的name
-    var cls ='h5_component_name_' + name + ' h5_component_' + cfg.type;
-    var component = $('<div class="h5_component ' + cls + '" id="' + id + '"></div>');
+    var cls = 'h5_component_'+cfg.type;
+    var component = $('<div class="h5_component '+cls+' h5_component_name_'+name+'" id="'+id+'">');
 
     //如果有text，写入component
     cfg.text && component.text(cfg.text);
@@ -26,16 +26,23 @@ var H5ComponentBase = function (name, cfg) {
     //... 其他自定义参数，随用随加
 
     component.on('onLoad', function () {
-        // 添加类名，代表load完成，并不应该指定任何动画
-        component.addClass(cls + '_load').removeClass(cls+'_leave');
-        cfg.animateIn && component.animate(cfg.animateIn);
+        // 设置渐变
+        setTimeout(function () {
+            // 添加类名，代表load完成，并不应该指定任何动画
+            component.addClass(cls + '_load').removeClass(cls + '_leave');
+            cfg.animateIn && component.animate(cfg.animateIn);
+        }, cfg.delay || 0)
+
         return false;
     });
 
 
     component.on('onLeave', function () {
-        component.addClass(cls + '_leave').removeClass(cls+'_load');
-        cfg.animateOut && component.animate(cfg.animateOut);
+        setTimeout(function () {
+            component.addClass(cls + '_leave').removeClass(cls + '_load');
+            cfg.animateOut && component.animate(cfg.animateOut);
+        }, cfg.delay || 0);
+
         return false;
     });
 

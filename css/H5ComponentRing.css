@@ -1,0 +1,21 @@
+/* 环图组件样式 */
+.h5_component_ring .mask {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 90;
+  background-color: #fff;
+  border-radius: 50%;
+  -webkit-transform: scale(0.8);
+}
+.h5_component_ring .text {
+  width: 100%;
+  top: 40%;
+  opacity: 0;
+  font-size: 15px;
+}
+.h5_component_ring .text .per {
+  font-size: 15px;
+}
