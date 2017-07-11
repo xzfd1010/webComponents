@@ -11,8 +11,6 @@ var H5ComponentPie = function (name, cfg) {
     // 绘制网格线——背景层
     var w = cfg.width;
     var h = cfg.height;
-
-    // 加入一个画布（用于做网格线背景）
     var cns = document.createElement('canvas');
     var ctx = cns.getContext('2d');
     cns.width = ctx.width = w;
@@ -97,7 +95,7 @@ var H5ComponentPie = function (name, cfg) {
             text.css('bottom', (h - y) / 2);
         }
 
-        if(cfg.data[2]){
+        if (cfg.data[2]) {
             text.css('color', cfg.data[2]);
         }
 
@@ -134,20 +132,24 @@ var H5ComponentPie = function (name, cfg) {
             ctx.arc(r, r, r, 0, 2 * Math.PI);
             component.find('.text').css('opacity', 0);
         } else {
-            // true代表反向动画
+            // true代表反向动画，不加true是渐显，加上true变为渐隐
             ctx.arc(r, r, r, sAngle, sAngle + 2 * Math.PI * per, true);
         }
 
         ctx.fill();
         ctx.stroke();
 
-        if(per>=1) {
+        if (per >= 1) {
             component.find('.text').css('opacity', 1);
+            // 这里是为了处理环图层叠顺序
+            $(cns).css('zIndex', -1);
+        } else {
+            $(cns).css('zIndex', 3);
         }
     }
 
     // 初始化蒙版
-    // draw(0);
+    draw(0);
 
     // 饼图生长动画
     component.on('onLoad', function () {

@@ -21,7 +21,7 @@ var H5ComponentRadar = function (name, cfg) {
     cns.height = ctx.height = h;
     component.append(cns);
 
-    var r = (w ) / 2;
+    var r = w / 2;
     var step = cfg.data.length;//数据条目
 
     // // 绘制圆心
@@ -47,6 +47,7 @@ var H5ComponentRadar = function (name, cfg) {
         ctx.beginPath();
         for (var i = 0; i < step; i++) {
             var rad = (2 * Math.PI / 360) * (360 / step ) * i;
+            // 就是2PI ／ step * i
             var x = r + Math.sin(rad) * r * (s / 10);
             var y = r + Math.cos(rad) * r * (s / 10);
 
@@ -65,6 +66,7 @@ var H5ComponentRadar = function (name, cfg) {
     // 绘制伞骨
     for (var i = 0; i < step; i++) {
         var rad = (2 * Math.PI / 360) * (360 / step ) * i;
+        // x，y是顶点坐标
         var x = r + Math.sin(rad) * r;
         var y = r + Math.cos(rad) * r;
         ctx.moveTo(r, r);
@@ -75,7 +77,10 @@ var H5ComponentRadar = function (name, cfg) {
 
         var text = $('<div class="text">');
         text.text(cfg.data[i][0]);
+
+        // 文字渐次出现
         text.css('transition', 'all .5s ' + i * .1 + 's');
+
         // 这样写会挡住图表
         // text.css('left', x/2);
         // text.css('top', y / 2);
@@ -138,14 +143,14 @@ var H5ComponentRadar = function (name, cfg) {
         ctx.closePath();
         ctx.stroke();
 
-        // 分开数据的点
+        // 分开填充数据点
         ctx.fillStyle = '#ff7676';
         for (var i = 0; i < step; i++) {
             var rad = (2 * Math.PI / 360) * (360 / step ) * i;
             var rate = cfg.data[i][1] * per;
             var x = r + Math.sin(rad) * r * rate;
             var y = r + Math.cos(rad) * r * rate;
-            ctx.beginPath()
+            ctx.beginPath();
             ctx.arc(x, y, 5, 0, 2 * Math.PI);
             ctx.fill();
             ctx.closePath();

@@ -9,7 +9,7 @@ var H5ComponentPolyline = function (name, cfg) {
     // 散点图组件基于原有的H5ComponentBase组件
     var component = new H5ComponentBase(name, cfg);
 
-    // 绘制网格线，除2是为了retina，而这里的宽度是给canvas用的，所以直接设置
+    // 绘制网格线，直接采用传入的宽高，然后在css中设置最大宽高
     var w = cfg.width;
     var h = cfg.height;
 
@@ -28,6 +28,7 @@ var H5ComponentPolyline = function (name, cfg) {
     ctx.lineWidth = 1;
     ctx.strokeStyle = '#aaa';
 
+    // 此处赋值？？
     window.ctx = ctx;
 
     for (var i = 0; i < step + 1; i++) {
@@ -112,7 +113,6 @@ var H5ComponentPolyline = function (name, cfg) {
             var x = points[i][0];
             var y = points[i][1];
 
-            // ctx.arc(x, y, 5, 0, 2 * Math.PI);
             ctx.lineTo(points[i + 1][0], points[i + 1][1])
 
         }
@@ -125,7 +125,7 @@ var H5ComponentPolyline = function (name, cfg) {
         //绘制阴影
         // api：ctx.lineTo(x,x); ctx.stroke(); ctx.fill();
         var length = points.length;
-        ctx.lineTo(points[length - 1][0], h);//当前最后一个点的x
+        ctx.lineTo(points[length - 1][0], h);//当前最后一个点的坐标
         ctx.lineTo(points[0][0], h);
         // ctx.lineTo(points[0][0], points[0][1]);
         ctx.fillStyle = 'rgba(255, 138, 120, .2)';
@@ -138,6 +138,7 @@ var H5ComponentPolyline = function (name, cfg) {
             var y = points[i][1];
             ctx.moveTo(x, y);
             // 设置字体颜色
+            ctx.font="normal 20px 微软雅黑";
             ctx.fillStyle = item[2] ? item[2] : '#595959';
             ctx.fillText(((item[1] * 100) + '%'), x - 10, y - 10);
         }

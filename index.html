@@ -5,8 +5,22 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
     <meta name="renderer" content="webkit">
     <title>Title</title>
+    <!--载入所有的静态资源-->
+    <script src="js/lib/jquery.js"></script>
+    <script src="js/lib/jquery-ui.min.js"></script>
+    <script src="js/lib/jquery.fullPage.js"></script>
+
+    <!--加载H5相关资源-->
+    <script type="text/javascript">
+        var res = ['Base', 'Bar', 'Bar_v', 'Point', 'Polyline', 'Radar', 'Pie', 'Ring'];
+        var html = [];
+        for (s in res) {
+            html.push('<script src="js/H5Component' + res[s] + '.js"><\/script>');
+            html.push('<link rel="css/H5Component' + res[s] + '.css">');
+        }
+        document.write(html.join(' '));
+    </script>
 </head>
 <body>
-hahah
 </body>
 </html>

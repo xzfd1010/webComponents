@@ -20,6 +20,6 @@
 .h5_component_polyline_load .text {
   opacity: 1;
 }
-.h5_component_polyline_leave {
+.h5_component_polyline_leave .text {
   opacity: 0;
 }
