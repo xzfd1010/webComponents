@@ -34,6 +34,10 @@
             padding: 0;
         }
 
+        .h5_page {
+            background-image: url(img/page_bg.png);
+        }
+
         .h5_page_face {
             background-image: url(img/face_bg.png);
         }
@@ -70,7 +74,16 @@
             100% {
                 transform: rotate(0deg)
             }
+        }
 
+        .h5_component_name_caption {
+            background-image: url(img/page_caption_bg.png);
+            width: 283px;
+            height: 160px;
+            text-align: center;
+            line-height: 140px;
+            font-size: 20px;
+            color: #fff;
         }
     </style>
 
@@ -121,7 +134,56 @@
                     animateOut: {right: -50, bottom: -50, opacity: 0},
                     delay: 1000
                 })
-                .loader();
+                .addPage()
+                .addComponent('caption', {text: '核心理念'})
+                .addComponent('text', {
+                    width: 500,
+                    height: 70,
+                    center: true,
+                    text: 'IT教育网=只学有用的',
+                    css: {
+                        opacity: 0,
+                        textAlign: 'center',
+                        color: 'red',
+                        fontSize: '26px'
+                    },
+                    animateIn: {opacity: 1, top: 120},
+                    animateOut: {opacity: 0, top: 240}
+                })
+                .addComponent('description',{
+                    center:true,
+                    width:481,
+                    height:295,
+                    text:'2013年，IT教育网的诞生引领中国IT职业从教育进入新时代；高质量实战课程、全新教学模式、实时互动学习，以领先优势打造行业品牌；迄今为止，IT教育网已成为国规模最大、互动性最高的IT技能学习平台。',
+                    bg:'img/description_bg.gif',
+                    css:{
+                        opacity:0,
+                        padding:'15px 10px 10px 10px',
+                        color:'#fff',
+                        fontSize:'15px',
+                        lineHeight:'18px',
+                        textAlign:'justify',
+                        top:240
+                    },
+                    animateIn: {opacity: 1, top: 190},
+                    animateOut: {opacity: 0, top: 240},
+                    delay:1000
+                })
+                .addComponent('people',{
+                    center:true,
+                    width:515,
+                    height:305,
+                    bg:'img/p1_people.png',
+                    css:{
+                        bottom:0,
+                        opacity:0
+                    },
+                    animateIn:{opacity:1,bottom:40},
+                    animateOut:{opacity:0,bottom:0},
+                    delay:500
+
+                })
+                .loader(2);
 
         })
     </script>

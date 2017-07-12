@@ -61,7 +61,8 @@ var H5 = function () {
     };
 
     /*H5对象初始化呈现*/
-    this.loader = function () {
+    // firstPage:初始第几页
+    this.loader = function (firstPage) {
         this.el.fullpage({
             onLeave: function (index, nextIndex, direction) {
                 //建立了一种耦合的方式，这样就可以给每个页面单独写事件
@@ -73,6 +74,9 @@ var H5 = function () {
         });
         this.page[0].find('.h5_component').trigger('onLoad');
         this.el.show();
+        if(firstPage){
+            $.fn.fullpage.moveTo(firstPage);
+        }
     }
 
     return this;
