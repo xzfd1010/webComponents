@@ -5,8 +5,8 @@ var H5ComponentBase = function (name, cfg) {
     var cfg = cfg || {};
     var id = ('h5_c_' + Math.random()).replace('.', '_');
     // 代表组件类型className,以及自定义的name
-    var cls = 'h5_component_'+cfg.type;
-    var component = $('<div class="h5_component '+cls+' h5_component_name_'+name+'" id="'+id+'">');
+    var cls = 'h5_component_' + cfg.type;
+    var component = $('<div class="h5_component ' + cls + ' h5_component_name_' + name + '" id="' + id + '">');
 
     //如果有text，写入component
     cfg.text && component.text(cfg.text);
@@ -24,6 +24,10 @@ var H5ComponentBase = function (name, cfg) {
     }
 
     //... 其他自定义参数，随用随加
+    // onclick回调函数
+    if (typeof cfg.onclick === 'function') {
+        component.on('click', cfg.onclick)
+    }
 
     component.on('onLoad', function () {
         // 设置渐变

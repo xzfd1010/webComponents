@@ -30,6 +30,12 @@ var H5 = function () {
         this.el.append(page);
         // 添加到数组中记录
         this.page.push(page);
+
+        //添加页时的回调函数
+        if(typeof this.whenAddPage === 'function') {
+            this.whenAddPage();
+        }
+
         return this;
     };
 
