@@ -16,12 +16,20 @@
 
 // 文字居中
 .h5_component_ring .text {
+  position: static;
+  display: inline-block;
+  vertical-align: middle;
   width: 100%;
-  top: 40%;
+  //top: 50%;
   opacity: 0;
-  font-size: 15px;
+}
+.h5_component_ring .mask:after{
+  content:'';
+  display: inline-block;
+  width:0;
+  height:100%;
+  vertical-align: middle;
 }
 
 .h5_component_ring .text .per {
-  font-size: 15px;
 }

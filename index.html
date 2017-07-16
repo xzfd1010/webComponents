@@ -105,21 +105,21 @@
             var h5 = new H5();
 
             // 每添加一页，都加一个同样的组件
-            h5.whenAddPage = function(){
-                this.addComponent('slide_up',{
-                    bg:'img/footer.png',
-                    css:{
-                        opacity:0,
-                        left:0,bottom:-20,
-                        width:'100%',height:20,zIndex:999
+            h5.whenAddPage = function () {
+                this.addComponent('slide_up', {
+                    bg: 'img/footer.png',
+                    css: {
+                        opacity: 0,
+                        left: 0, bottom: -20,
+                        width: '100%', height: 20, zIndex: 999
                     },
-                    animateIn:{
-                        opacity:1,bottom:0
+                    animateIn: {
+                        opacity: 1, bottom: 0
                     },
-                    animateOut:{
-                        opacity:0,bottom:-20
+                    animateOut: {
+                        opacity: 0, bottom: -20
                     },
-                    delay:500
+                    delay: 500
                 })
                 return this;
             }
@@ -127,6 +127,7 @@
             // 先考虑调用方式，再考虑编码方式，自顶向下
             // 调用方式：链式调用
             h5
+            //第一页
                 .addPage('face')
                 .addComponent('topic', {
                     center: true,
@@ -166,6 +167,7 @@
                     animateOut: {right: -50, bottom: -50, opacity: 0},
                     delay: 1000
                 })
+                //第二页
                 .addPage()
                 .addComponent('caption', {text: '核心理念'})
                 .addComponent('text', {
@@ -215,6 +217,347 @@
                     delay: 500
 
                 })
+                //图表页1-polyline
+                .addPage()
+                .addComponent('caption', {text: '课程分布方向'})
+                .addComponent('polyline', {
+                        type: 'polyline',
+//        text: '文本内容',
+                        width: 530,
+                        height: 400,
+                        data: [
+                            ['前端开发', .4, '#ff7676'],
+                            ['移动开发', .1],
+                            ['后段开发', .2],
+                            ['图像处理', .1]
+                        ],
+                        css: {
+                            //统一设置css样式
+                            top: 200,
+                            opacity: 0
+                        },
+                        // 配置入场和出场动画
+                        animateIn: {
+                            top: 250,
+                            opacity: 1
+
+                        },
+                        animateOut: {
+                            top: 100,
+                            opacity: 0
+                        },
+                        center: true // 用于设置是否水平居中
+                    }
+                )
+                .addComponent('msg', {
+                    text: '前端开发课程占到40%',
+                    css: {
+                        opacity: 0, top: 160,
+                        textAlign: 'center', width: '100%', color: '#ff7676'
+                    },
+                    animateIn: {opacity: 1},
+                    animateOut: {opacity: 0}
+                })
+                //图表页2-pie
+                .addPage()
+                .addComponent('caption', {text: '移动开发课程资源'})
+                .addComponent('pie', {
+                    type: 'pie',
+                    width: 400,
+                    height: 400,
+                    data: [
+                        ['Android', .71, '#ff7676'],
+                        ['IOS', .25, '#5ddbd8'],
+                        ['Cocos2d-x', .02, '#99c1ff'],
+                        ['Unity-3D', .02, '#ffad69', 20]
+                    ],
+                    css: {
+                        top: 100,
+                        opacity: 0
+                    },
+                    animateIn: {
+                        top: 200,
+                        opacity: 1
+
+                    },
+                    animateOut: {
+                        top: 100,
+                        opacity: 0
+                    },
+                    center: true // 用于设置是否水平居中
+                })
+                .addComponent('msg', {
+                    text: '移动课程 Android 占到40%',
+                    css: {
+                        opacity: 0, bottom: 120,
+                        textAlign: 'center', width: '100%', color: '#ff7676'
+                    },
+                    animateIn: {opacity: 1},
+                    animateOut: {opacity: 0}
+                })
+                //图表页3-bar(bar-v)
+                .addPage()
+                .addComponent('caption', {text: '前端开发课程'})
+                .addComponent('bar', {
+                    type: 'bar',
+//        text: '文本内容',
+                    width: 530,
+                    height: 600,
+                    data: [
+                        ['Javascript', .4, '#ff7676'],
+                        // 这里的100%偏移量是按照A项的大小设置的
+                        ['HTML/CSS', .2],
+                        ['CSS3', .1],
+                        ['HTML5', .2],
+                        ['jQuery', .35],
+                        ['Bootstrap', .05],
+                        ['AngularJs', .09]
+                    ],
+                    css: {
+                        //统一设置css样式
+                        top: 100,
+                        opacity: 0
+                    },
+                    animateIn: {
+                        top: 200,
+                        opacity: 1
+                    },
+                    animateOut: {
+                        opacity: 0,
+                        top: 100
+                    },
+                    center: true // 用于设置是否水平居中
+                })
+                .addComponent('msg', {
+                    text: '前端课程 Javascript 占到40%',
+                    css: {
+                        opacity: 0, bottom: 120,
+                        textAlign: 'center', width: '100%', color: '#ff7676'
+                    },
+                    animateIn: {opacity: 1},
+                    animateOut: {opacity: 0}
+                })
+                .addPage()
+                .addComponent('caption', {text: '前端开发课程'})
+                .addComponent('bar_v', {
+                    type: 'bar_v',
+//        text: '文本内容',
+                    width: 530,
+                    height: 400,
+                    data: [
+                        ['Js', .4, '#ff7676'],
+                        // 这里的100%偏移量是按照A项的大小设置的
+                        ['PHP', .2],
+                        ['CSS3', .1],
+                        ['HTML5', .2],
+                        ['jQuery', .35]
+                    ],
+                    css: {
+                        //统一设置css样式
+                        top: 250,
+                        opacity: 0
+                    },
+                    animateIn: {
+                        top: 200,
+                        opacity: 1
+                    },
+                    animateOut: {
+                        opacity: 0,
+                        top: 250
+                    },
+                    center: true // 用于设置是否水平居中
+                })
+                .addComponent('msg', {
+                    text: '前端课程 Javascript 占到40%',
+                    css: {
+                        opacity: 0, top: 180,
+                        textAlign: 'center', width: '100%', color: '#ff7676'
+                    },
+                    animateIn: {opacity: 1},
+                    animateOut: {opacity: 0}
+                })
+                //图表页4-radar
+                .addPage()
+                .addComponent('caption', {text: '后段开发课程'})
+                .addComponent('radar',{
+                    type: 'radar',
+                    width: 400,
+                    height: 400,
+                    data: [
+                        ['Js', .9, '#ff7676'],
+                        ['CSS3', .8],
+                        ['PHP', .7],
+                        ['HTML5', .6],
+                        ['jQuery', .5]
+                    ],
+                    css: {
+                        top: 100,
+                        opacity: 0
+                    },
+                    animateIn: {
+                        top: 200,
+                        opacity: 1
+
+                    },
+                    animateOut: {
+                        top: 100,
+                        opacity: 0
+                    },
+                    center: true // 用于设置是否水平居中
+                })
+                //图表页5-ring
+                .addPage()
+                .addComponent('caption', {text: '课程报名人数过万'})
+                .addComponent('ring-all',{
+                    type: 'ring',
+                    width: 400,
+                    height: 400,
+                    data: [['总课程', .7, '#ff7676']],
+                    css: {
+                        top: 140,
+                        opacity: 0,
+                        fontSize:'24px'
+                    },
+                    animateIn: {
+                        opacity: 1
+                    },
+                    animateOut: {
+                        opacity: 0
+                    },
+                    center: true
+                })
+                .addComponent('msg', {
+                    text: '不同课程报名人数超过一万占比',
+                    css: {
+                        opacity: 0, top: 360,
+                        textAlign: 'center', width: '100%', color: '#ff7676'
+                    },
+                    animateIn: {opacity: 1},
+                    animateOut: {opacity: 0},
+                    delay:1500
+                })
+                .addComponent('ring-1',{
+                    type: 'ring',
+                    width: 140,
+                    height: 140,
+                    data: [['前端开发', .7, 'darkOrange']],
+                    css: {
+                        bottom: 110,
+                        left:30,
+                        opacity: 0,
+                        fontSize:'12px'
+                    },
+                    animateIn: {
+                        opacity: 1
+                    },
+                    animateOut: {
+                        opacity: 0
+                    }
+                })
+                .addComponent('ring-2',{
+                    type: 'ring',
+                    center:true,
+                    width: 140,
+                    height: 140,
+                    data: [['后端开发', .2, 'darkOrange']],
+                    css: {
+                        bottom: 110,
+                        opacity: 0,
+                        fontSize:'12px'
+                    },
+                    animateIn: {
+                        opacity: 1
+                    },
+                    animateOut: {
+                        opacity: 0
+                    }
+                })
+                .addComponent('ring-3',{
+                    type: 'ring',
+                    width: 140,
+                    height: 140,
+                    data: [['移动开发', .5, 'darkOrange']],
+                    css: {
+                        bottom: 110,
+                        right:30,
+                        opacity: 0,
+                        fontSize:'12px'
+                    },
+                    animateIn: {
+                        opacity: 1
+                    },
+                    animateOut: {
+                        opacity: 0
+                    }
+                })
+                .addComponent('ring-4',{
+                    type: 'ring',
+                    width: 140,
+                    height: 140,
+                    data: [['数据处理', .1, 'darkOrange']],
+                    css: {
+                        bottom: 40,
+                        left:90,
+                        opacity: 0,
+                        fontSize:'12px'
+                    },
+                    animateIn: {
+                        opacity: 1
+                    },
+                    animateOut: {
+                        opacity: 0
+                    }
+                })
+                .addComponent('ring-5',{
+                    type: 'ring',
+                    width: 140,
+                    height: 140,
+                    data: [['图像', .2, 'darkOrange']],
+                    css: {
+                        bottom: 40,
+                        right:90,
+                        opacity: 0,
+                        fontSize:'12px'
+                    },
+                    animateIn: {
+                        opacity: 1
+                    },
+                    animateOut: {
+                        opacity: 0
+                    }
+                })
+                //图表页6-point
+                .addPage()
+                .addComponent('caption', {text: '课程难度分布'})
+                .addComponent('point',{
+                    type: 'point',
+//        text: '文本内容',
+                    width: 300,
+                    height: 300,
+                    data: [
+                        ['中级', .4, '#ff7676'],
+                        // 这里的100%偏移量是按照A项的大小设置的
+                        ['初级', .2, '#ffa3a4', 0, '-60%'],
+                        ['高级', .3, '#99c1ff', '50%', '-120%']
+                    ],
+                    css: {
+                        //统一设置css样式
+                        bottom: '40%',
+                        opacity: 0
+                    },
+                    // 配置入场和出场动画
+                    animateIn: {
+                        bottom: '20%',
+                        opacity: 1
+
+                    },
+                    animateOut: {
+                        bottom: 0,
+                        opacity: 0
+                    },
+                    center: true // 用于设置是否水平居中
+                })
+                //尾页
                 .addPage('tail')
                 .addComponent('logo', {
                     center: true,
@@ -269,7 +612,7 @@
                         $.fn.fullpage.moveTo(1)
                     }
                 })
-                .loader(3);
+                .loader();
 
         })
     </script>

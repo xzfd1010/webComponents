@@ -32,7 +32,7 @@ var H5 = function () {
         this.page.push(page);
 
         //添加页时的回调函数
-        if(typeof this.whenAddPage === 'function') {
+        if (typeof this.whenAddPage === 'function') {
             this.whenAddPage();
         }
 
@@ -58,6 +58,35 @@ var H5 = function () {
                 // 这里与base组件结合起来了
                 component = new H5ComponentBase(name, cfg);
                 break;
+            case 'polyline':
+                // 这里与base组件结合起来了
+                component = new H5ComponentPolyline(name, cfg);
+                break;
+            case 'pie':
+                // 这里与base组件结合起来了
+                component = new H5ComponentPie(name, cfg);
+                break;
+            case 'bar':
+                // 这里与base组件结合起来了
+                component = new H5ComponentBar(name, cfg);
+                break;
+            case 'bar_v':
+                // 这里与base组件结合起来了
+                component = new H5ComponentBar_v(name, cfg);
+                break;
+            case 'radar':
+                // 这里与base组件结合起来了
+                component = new H5ComponentRadar(name, cfg);
+                break;
+            case 'ring':
+                // 这里与base组件结合起来了
+                component = new H5ComponentRing(name, cfg);
+                break;
+            case 'point':
+                // 这里与base组件结合起来了
+                component = new H5ComponentPoint(name, cfg);
+                break;
+
             default:
         }
 
@@ -80,7 +109,7 @@ var H5 = function () {
         });
         this.page[0].find('.h5_component').trigger('onLoad');
         this.el.show();
-        if(firstPage){
+        if (firstPage) {
             $.fn.fullpage.moveTo(firstPage);
         }
     }

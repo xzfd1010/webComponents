@@ -10,7 +10,6 @@
   position: absolute;
   text-align: center;
   z-index: 99;
-  font-size: 12px;
   transition: all 1s;
   opacity: 0;
 }

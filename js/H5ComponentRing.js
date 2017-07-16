@@ -22,6 +22,8 @@ var H5ComponentRing = function (name, cfg) {
 
     var text = component.find('.text');
 
+
+
     // 清空饼图的样式
     text.attr('style', '');
 
@@ -32,6 +34,7 @@ var H5ComponentRing = function (name, cfg) {
 
     // 在mask中添加文字
     mask.append(text);
+
 
     // 饼图生长动画
 
