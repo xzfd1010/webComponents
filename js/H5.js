@@ -2,6 +2,7 @@
  * Created by nick on 2017/6/28.
  */
 var H5 = function () {
+    // 当前h5对象的id
     this.id = ('h5_' + Math.random()).replace('.', '_');
     // 先隐藏
     this.el = $('<div class="h5" id="' + this.id + '">').hide();
@@ -113,6 +114,9 @@ var H5 = function () {
             $.fn.fullpage.moveTo(firstPage);
         }
     }
+
+    //目前这句代码的作用是，在有H5_loading的时候，让h5.loader变为H5_loading方法，并在代码中调用
+    this.loader = typeof H5_loading === 'function' ? H5_loading : this.loader;
 
     return this;
 };
