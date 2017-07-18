@@ -47,9 +47,9 @@
         height: 400,
         data: [
             ['Js', .4, '#ff7676'],
-            ['CSS3', .2],
-            ['HTML', .05],
-            ['PHP', .2],
+            ['CSS3', .01],
+            ['HTML', .01],
+            ['PHP', .43],
             ['jQuery', .15]
         ],
         css: {
@@ -75,7 +75,7 @@
     $('body').click(function () {
         leave = !leave;
         $('.h5_component').trigger(leave ? 'onLeave' : 'onLoad');
-    })
+    }).click();
 </script>
 </body>
 </html>

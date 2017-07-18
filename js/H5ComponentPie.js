@@ -95,8 +95,8 @@ var H5ComponentPie = function (name, cfg) {
             text.css('bottom', (h - y) / 2);
         }
 
-        if (cfg.data[2]) {
-            text.css('color', cfg.data[2]);
+        if (cfg.data[i][2]) {
+            text.css('color', cfg.data[i][2]);
         }
 
         text.css('opacity', 0);
@@ -140,6 +140,9 @@ var H5ComponentPie = function (name, cfg) {
         ctx.stroke();
 
         if (per >= 1) {
+            component.find('.text').css('transition', 'all 0s');
+            // H5ComponentPie.resort(component.find('.text'));
+            component.find('.text').css('transition', 'all 1s');
             component.find('.text').css('opacity', 1);
             // 这里是为了处理环图层叠顺序
             $(cns).css('zIndex', -1);
@@ -177,4 +180,77 @@ var H5ComponentPie = function (name, cfg) {
 
 
     return component;
+};
+
+// 重排项目文本元素
+H5ComponentPie.resort = function (list) {
+    console.log(list);
+    // 1. 检测相交
+    var compare = function (domA, domB) {
+        // 不直接获取left的原因：left可能是auto
+        var offsetA = $(domA).offset();
+        var offsetB = $(domB).offset();
+
+        // domA的投影
+        var shadowA_x = [offsetA.left, $(domA).width() + offsetA.left];
+        var shadowA_y = [offsetA.top, $(domA).height() + offsetA.top];
+
+        // domB的投影
+        var shadowB_x = [offsetB.left, $(domB).width() + offsetB.left];
+        var shadowB_y = [offsetB.top, $(domB).height() + offsetB.top];
+
+        // 检测x相交，不可能完全相同，所以不添加 =
+        var intersect_x = (shadowA_x[0] > shadowB_x[0] && shadowA_x[0] < shadowB_x[1]) || (shadowA_x[1] > shadowB_x[0] && shadowA_x[1] < shadowB_x[1])
+        console.log(intersect_x);
+        // 检测y相交
+        var intersect_y = (shadowA_y[0] > shadowB_y[0] && shadowA_y[0] < shadowB_y[1]) || (shadowA_y[1] > shadowB_y[0] && shadowA_y[1] < shadowB_y[1])
+        console.log(intersect_y);
+
+        return intersect_x && intersect_y;
+    };
+
+    // 2. 重排
+    // 应该考虑在圆的哪个位置，判断比较复杂，当前只进行y轴的重排
+    var reset = function (domA, domB) {
+        if (domA.style.top !== '') {
+            $(domA).css('top', parseInt($(domA).css('top')) + $(domB).height());
+        } else if (domA.style.bottom !== '') {
+            $(domA).css('bottom', parseInt($(domA).css('bottom')) + $(domB).height());
+        }
+    };
+
+    // 定义将要重排的元素
+    var willReset = [];
+
+    $.each(list, function (i, domTarget) {
+        // debugger
+        // if (compare(willReset[willReset.length - 1], domTarget)) {
+        //     willReset.push(domTarget); // 不会把自身加入到对比，所以至少有2个
+        // }
+
+
+        if (list[i + 1]) {
+            // console.log($(domTarget).text(), $(list[i + 1]).text(), '相交');
+            if(compare(domTarget, list[i + 1])){
+                if(willReset.indexOf(domTarget) === -1){
+                    willReset.push(domTarget);
+                }
+                if(willReset.indexOf(list[i+1]) === -1){
+                    willReset.push(list[i+1]);
+                }
+            }
+        }
+    })
+
+    if (willReset.length > 1) {
+        $.each(willReset, function (i, domA) {
+            if (willReset[i + 1]) {
+                reset(domA, willReset[i + 1]);
+            }
+        });
+        // 递归调用，这里会卡死，因为页面会有动画，所以在重排时改变动画时间
+        H5ComponentPie.resort(willReset);
+    }
+
+    console.log(willReset);
 };
