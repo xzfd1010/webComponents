@@ -1,6 +1,9 @@
 /**
  * Created by nick on 2017/6/28.
  */
+
+var jdata = [];
+
 var H5 = function () {
     // 当前h5对象的id
     this.id = ('h5_' + Math.random()).replace('.', '_');
@@ -19,6 +22,7 @@ var H5 = function () {
      * @return {H5} H5对象，可以重复使用H5对象支持的方法
      */
     this.addPage = function (name, text) {
+        jdata.push({isPage: true, name: name, text: text});
         var page = $('<div class="section h5_page">');
 
         if (name !== undefined) {
@@ -47,6 +51,8 @@ var H5 = function () {
         cfg = $.extend({
             type: 'base'
         }, cfg);
+
+        jdata.push({isPage: false, name: name, cfg: cfg});
 
         var component;
 

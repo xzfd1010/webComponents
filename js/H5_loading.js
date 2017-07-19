@@ -6,6 +6,7 @@ var H5_loading = function (images, firstPage) {
     var id = this.id;
 
     if (this._images === undefined) { // 第一次进入H5_loading方法
+        window.firstPage = firstPage;
         this._images = (images || []).length; // 代表需要加载的图片个数
         this._loaded = 0; // 代表已加载的图片个数
 
@@ -50,9 +51,12 @@ var H5_loading = function (images, firstPage) {
             $(this).find('.h5_component').trigger('onLoad');
         }
     });
+    // debugger
     this.page[0].find('.h5_component').trigger('onLoad');
     this.el.show();
-    if (firstPage) {
-        $.fn.fullpage.moveTo(firstPage);
+    if (window.firstPage) {
+        $.fn.fullpage.moveTo(window.firstPage);
     }
+
+    window.firstPage = null;
 }
