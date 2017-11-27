@@ -66,7 +66,6 @@ var H5ComponentPolyline = function (name, cfg) {
     cns.width = ctx.width = w;
     cns.height = ctx.height = h;
     component.append(cns);
-
     /**
      * 绘制折线以及对应的数据和阴影
      * @param per 从0到1之间的数据，会根据这个值绘制最终数据对应的中间状态
