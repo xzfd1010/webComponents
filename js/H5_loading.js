@@ -43,6 +43,8 @@ var H5_loading = function (images, firstPage) {
     window[id] = null;
 
     this.el.fullpage({
+        css3:true,
+        easingcss3: 'cubic-bezier(.17,.67,.53,1.33)',
         onLeave: function (index, nextIndex, direction) {
             //建立了一种耦合的方式，这样就可以给每个页面单独写事件
             $(this).find('.h5_component').trigger('onLeave');
